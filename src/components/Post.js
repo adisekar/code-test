@@ -5,14 +5,25 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = { apiData: null };
+        // this.getPosts = this.getPosts.bind(this);
+    }
+
+    getPosts = async () => {
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        let json = await response.json();
+        this.setState({ apiData: json });
     }
 
     componentDidMount() {
-        let data = fetch("https://jsonplaceholder.typicode.com/posts")
-            .then(res => res.json());
+        // let data = fetch("https://jsonplaceholder.typicode.com/posts")
+        //     .then(res => res.json());
 
-        data.then(data => this.setState({ apiData: data }));
+        // data.then(data => this.setState({ apiData: data }));
+
+        this.getPosts();
     }
+
+
 
 
     render() {
